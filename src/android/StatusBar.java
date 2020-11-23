@@ -20,6 +20,7 @@
 package org.apache.cordova.statusbar;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
@@ -205,6 +206,23 @@ public class StatusBar extends CordovaPlugin {
                 @Override
                 public void run() {
                     setStatusBarStyle("blackopaque");
+                }
+            });
+            return true;
+        }
+
+        if ("getHeight".equals(action)) {
+            this.cordova.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Context context = cordova.getActivity().getApplicationContext();
+                    float density = activity.getResources().getDisplayMetrics().density;
+                    float height = 0;
+                    int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+                    if (resourceId > 0) {
+                        height = context.getResources().getDimension(resourceId);
+                    }
+                    callbackContext.sendPluginResult(new PluginResult(PluginResult.Status.OK, height > 0 ? (height / density) : 0));
                 }
             });
             return true;

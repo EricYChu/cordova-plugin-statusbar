@@ -126,6 +126,7 @@ Although in the global scope, it is not available until after the `deviceready` 
 - StatusBar.backgroundColorByHexString
 - StatusBar.hide
 - StatusBar.show
+- StatusBar.getHeight
 
 Properties
 --------
@@ -298,6 +299,22 @@ Supported Platforms
 - iOS
 - Android
 - Windows
+
+StatusBar.getHeight
+=================
+
+Get the statusbar height.
+
+    StatusBar.getHeight(px => {
+        console.log(px)
+    });
+
+
+Supported Platforms
+-------------------
+
+- iOS
+- Android
 
 StatusBar.isVisible
 =================
